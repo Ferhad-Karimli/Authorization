@@ -1,24 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../index';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface DrawerState {
-  status: boolean;
+export interface AuthState {
+  auth: any;
 }
 
-const initialState: DrawerState = {
-  status: false,
-} as DrawerState;
+const initialState: AuthState = {
+  auth: "",
+};
 
-export const drawerSlice = createSlice({
-  name: 'drawer',
+export const AuthorizationSlice = createSlice({
+  name: "login",
   initialState,
   reducers: {
-    drawer: (state) => {
-      !state.status ? (state.status = true) : (state.status = false);
+    login: (state, action: PayloadAction<any>) => {
+      state.auth = action.payload;
     },
   },
 });
 
-export const { drawer } = drawerSlice.actions;
-export const selectCount = (state: RootState) => state.drawer.status;
-export default drawerSlice.reducer;
+export const { login } = AuthorizationSlice.actions;
+export default AuthorizationSlice.reducer;
